@@ -1,7 +1,14 @@
+
+# postgresql
+data
+default_database_data
+test_database_data
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+.env
 
 # C extensions
 *.so
@@ -102,8 +109,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
-.env.*
+
 .venv
 env/
 venv/
@@ -128,6 +134,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-.idea/
-
-.vercel
