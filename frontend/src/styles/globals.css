@@ -45,3 +45,8 @@ input[type="number"] {
 .placecard{
   background: #F9F3EE;
 }
+
+.vline {
+  border-left: 1px solid lightgrey;
+  height: 1.5em;
+}
