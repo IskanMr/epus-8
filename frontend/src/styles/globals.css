@@ -50,3 +50,12 @@ input[type="number"] {
   border-left: 1px solid lightgrey;
   height: 1.5em;
 }
+
+.dropdown {
+  background: #F6F0E5;
+  border: 1px solid #FE6321;
+}
+
+.orangetheme {
+  color: #FE6321
+}

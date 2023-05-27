@@ -24,19 +24,16 @@ export default function Place() {
               Ruangan berkapasitas 16 orang di lantai 1
             </p>
           </div> */}
-          <Placecard placeDetailEndpoint="place/1" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
-          <Placecard placeDetailEndpoint="place/1" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
-          <Placecard placeDetailEndpoint="place/1" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
-          <Placecard placeDetailEndpoint="place/1" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
-          <Placecard placeDetailEndpoint="place/1" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
-          <Placecard placeDetailEndpoint="place/1" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
-          <Placecard placeDetailEndpoint="place/1" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
-          <Placecard placeDetailEndpoint="place/1" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
-          <Placecard placeDetailEndpoint="place/1" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
-          <Placecard placeDetailEndpoint="place/1" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
-          <Placecard placeDetailEndpoint="place/1" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
-          <Placecard placeDetailEndpoint="place/1" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
-          <Placecard placeDetailEndpoint="place/1" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
+          <Placecard placeDetailEndpoint="placedetail" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
+          <Placecard placeDetailEndpoint="placedetail" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
+          <Placecard placeDetailEndpoint="placedetail" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
+          <Placecard placeDetailEndpoint="placedetail" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
+          <Placecard placeDetailEndpoint="placedetail" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
+          <Placecard placeDetailEndpoint="placedetail" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
+          <Placecard placeDetailEndpoint="placedetail" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
+          <Placecard placeDetailEndpoint="placedetail" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/><Placecard placeDetailEndpoint="placedetail" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
+          <Placecard placeDetailEndpoint="placedetail" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
+          <Placecard placeDetailEndpoint="placedetail" imgUrl="/seatsquare.png" title="Ruangan C-7" description="Ruangan berkapasitas 16 orang di lantai 1"/>
           
           
         </div>

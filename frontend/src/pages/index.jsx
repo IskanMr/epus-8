@@ -7,7 +7,7 @@ export default function Index() {
   return (
     <DefaultLayout seoTitle="Home">
       <div className="bg w-full">
-        <div className="flex flex-row items-center h-screen p-10 px-60 justify-evently">
+        <div className="flex flex-row items-center h-screen p-10 px-60 justify-evently gap-10">
           <div className="flex flex-grow flex-col">
             <div className="flex text-lg">
               Selamat datang di
@@ -15,10 +15,10 @@ export default function Index() {
             <div className="flex text-6xl font-semibold h1epus">
               EPUS
             </div>
-            <div className="flex text-lg">
-              Tidak perlu kahwatir lagi untuk mendapat ruang belajar di perpustakaan kami!
+            <div className="flex">
+              Tidak perlu khawatir lagi untuk mendapat ruang belajar di perpustakaan kami!
             </div>
-            <Link href='/place' className="pt-2">
+            <Link href='/place' className="pt-8">
               <Button>
                 Pesan ruangan belajar
               </Button>
@@ -28,8 +28,8 @@ export default function Index() {
             <Image 
               className="rounded-xl"
               src="/lib.jpg"
-              width={300}
-              height={300}
+              width={600}
+              height={600}
             />
           </div>
           <div>
