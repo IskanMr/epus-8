@@ -2,8 +2,8 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi_sqlalchemy import DBSessionMiddleware, db
 
-from schema import Pengguna as PenggunaSchema, Tempat as TempatSchema, Waktu_Tersedia as Waktu_TersediaSchema, Book_Tempat as Book_TempatSchema
-from models import Pengguna as PenggunaModel, Tempat as TempatModel, Waktu_Tersedia as Waktu_TersediaModel, Book_Tempat as Book_TempatModel
+from models.models import Pengguna as PenggunaModel, Tempat as TempatModel, Waktu_Tersedia as Waktu_TersediaModel, Book_Tempat as Book_TempatModel
+from schema.schema import Pengguna as PenggunaSchema, Tempat as TempatSchema, Waktu_Tersedia as Waktu_TersediaSchema, Book_Tempat as Book_TempatSchema
 
 import os
 from dotenv import load_dotenv
