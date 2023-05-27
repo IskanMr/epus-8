@@ -1,8 +1,8 @@
 # build a schema using pydantic
 from pydantic import BaseModel
+from datetime import datetime
 
 class Pengguna(BaseModel):
-    id_user:int
     username:str
     password:str
 
@@ -10,24 +10,20 @@ class Pengguna(BaseModel):
         orm_mode = True
 
 class Tempat(BaseModel):
-    id_place:int
     nama_tempat:str
 
     class Config:
         orm_mode = True
 
 class Waktu_Tersedia(BaseModel):
-    id:int
     id_place:int
-    is_available:bool
-    waktu:str
+    is_available:bool = True
+    waktu:datetime
 
     class Config:
         orm_mode = True
 
-class Book_Tempat(BaseModel):
-    id:int
-    id_place:int
+class Booking_Waktu(BaseModel):
     id_user:int
     id_waktu:int
 

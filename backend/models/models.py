@@ -51,10 +51,10 @@ class Waktu_Tersedia(Base):
     #time_created = Column(DateTime(timezone=True), server_default=func.now())
     #time_updated = Column(DateTime(timezone=True), onupdate=func.now())
 
-class Book_Tempat(Base):
-    __tablename__ = 'pengguna_tempat'
+class Booking_Waktu(Base):
+    __tablename__ = 'booking_waktu'
     id = Column(Integer, primary_key=True)
-    id_place = Column(Integer, ForeignKey('tempat.id_place'))
+    #id_place = Column(Integer, ForeignKey('tempat.id_place'))
 
     id_user = Column(Integer, ForeignKey('pengguna.id_user'))
     user = relationship('Pengguna')
