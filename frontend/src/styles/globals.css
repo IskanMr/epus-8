@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html,
 body {
@@ -24,4 +27,35 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.navcustom {
+  background: #F9F3EE;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+}
+
+.bg {
+  background: #F2E5D0;
+}
+
+.h1epus {
+  color: #FE6321;
+}
+
+.placecard{
+  background: #F9F3EE;
+}
+
+.vline {
+  border-left: 1px solid lightgrey;
+  height: 1.5em;
+}
+
+.dropdown {
+  background: #F6F0E5;
+  border: 1px solid #FE6321;
+}
+
+.orangetheme {
+  color: #FE6321
 }

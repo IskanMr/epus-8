@@ -4,7 +4,7 @@ import Button from "../components/utils/Button";
 
 import Styles from "../styles/pages/login.module.css";
 
-export default function Login() {
+export default function Register() {
   const [passwordShown, setPasswordShown] = useState(false);
 
   const togglePassword = () => {
@@ -30,7 +30,7 @@ export default function Login() {
       <div className={Styles.card}>
         <h1 className={Styles.title}>EPUS</h1>
         {/* <div className="flex flex-row justify-start w-full"> */}
-        <h2 className="flex w-full font-semibold text-xl py-2">Masuk</h2>  
+        <h2 className="flex w-full font-semibold text-xl py-2">Daftar</h2>  
         {/* </div> */}
         <form action={login} className={Styles.form} method="post">
           <div className={Styles.inputGroup}>
@@ -58,7 +58,7 @@ export default function Login() {
             </div>
           </div>
           <Button style={{ width: "100%" }} onClick={login}>
-            Masuk
+            Daftar
           </Button>
         </form>
       </div>
