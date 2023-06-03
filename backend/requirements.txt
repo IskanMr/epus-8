@@ -1,6 +1,7 @@
 fastapi[all]
 fastapi-sqlalchemy
 pydantic
+mysql-connector-python
 alembic
 psycopg2
 uvicorn

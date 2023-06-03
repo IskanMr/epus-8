@@ -30,6 +30,7 @@ class Pengguna(Base):
     __tablename__ = 'pengguna'
     id_user = Column(Integer, primary_key=True)
     username = Column(VARCHAR(128))
+    is_admin = Column(Boolean)
     password = Column(VARCHAR(128))
     #time_created = Column(DateTime(timezone=True), server_default=func.now())
     #time_updated = Column(DateTime(timezone=True), onupdate=func.now())
@@ -65,6 +66,18 @@ class Booking_Waktu(Base):
     #time_created = Column(DateTime(timezone=True), server_default=func.now())
     #time_updated = Column(DateTime(timezone=True), onupdate=func.now())
 
+class Buku(Base):
+    __tablename__ = 'buku'
+    id_buku = Column(Integer, primary_key=True)
+    judul_buku = Column(VARCHAR(128))
+    penulis = Column(VARCHAR(128))
+    cover = Column(VARCHAR(128))
+    stock = Column(Integer)
 
-
-
+class PinjamBuku(Base):
+    __tablename__ = 'pinjam_buku'
+    id_pinjam = Column(Integer, primary_key=True)
+    id_user = Column(Integer, ForeignKey('pengguna.id_user'))
+    user = relationship('Pengguna')
+    id_buku = Column(Integer, ForeignKey('buku.id_buku'))
+    buku = relationship('Buku')
