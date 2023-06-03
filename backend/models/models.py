@@ -81,3 +81,10 @@ class PinjamBuku(Base):
     user = relationship('Pengguna')
     id_buku = Column(Integer, ForeignKey('buku.id_buku'))
     buku = relationship('Buku')
+
+class admin(Base):
+    __tablename__ = 'admin'
+    id = Column(Integer, primary_key=True)
+    full_name = Column(VARCHAR(128))
+    email = Column(VARCHAR(128))
+    password = Column(VARCHAR(128))
