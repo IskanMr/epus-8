@@ -1,6 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi_sqlalchemy import DBSessionMiddleware, db
+from fastapi.middleware.cors import CORSMiddleware
 
 from models.models import Pengguna as PenggunaModel, Tempat as TempatModel, Waktu_Tersedia as Waktu_TersediaModel, Booking_Waktu as Booking_WaktuModel
 from schema.schema import Pengguna as PenggunaSchema, Tempat as TempatSchema, Waktu_Tersedia as Waktu_TersediaSchema, Booking_Waktu as Booking_WaktuSchema
@@ -15,6 +16,18 @@ app = FastAPI()
 
 # to avoid csrftokenError
 app.add_middleware(DBSessionMiddleware, db_url=os.environ['DATABASE_URL'])
+
+# Configure CORS
+origins = [
+    "http://localhost:3000",  # Replace with the allowed origin(s) for your application
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["Content-Type"],
+)
 
 @app.get("/")
 async def root():
