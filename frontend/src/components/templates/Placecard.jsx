@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from 'next/link';
 
-export default function Placecard({ placeDetailEndpoint, imgUrl, title, description}) {
+export default function Placecard({ placeId, imgUrl, title, description}) {
+  const placeDetailEndpoint = "placedetail/" + placeId
   return (
-    <Link href={placeDetailEndpoint}>
+    <Link href={`/reserve/${placeId}`}>
       <div className="placecard rounded-xl w-48 p-5">
         <Image
           className="rounded-xl"

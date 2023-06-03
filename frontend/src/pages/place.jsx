@@ -97,7 +97,7 @@ export default function Place() {
             data.map((item, index) => (
               <Placecard
                 key={index}
-                placeDetailEndpoint="placedetail"
+                placeId={item.id_place}
                 imgUrl="/seatsquare.png"
                 title={item.nama_tempat}
                 description="Ruangan berkapasitas 16 orang di lantai 1"
