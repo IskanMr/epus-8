@@ -106,6 +106,9 @@ async def delete_booking_waktu(id_booking_waktu: int):
  
     return {"message": "deleted"}
 
+@app.get("/booking_waktu/user/{id_user}")
+async def get_booking_waktu(id_user: int):
+    return db.session.query(Booking_WaktuModel).filter(Booking_WaktuModel.id_user == id_user).all()
 
 
 
