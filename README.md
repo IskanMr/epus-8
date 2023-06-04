@@ -23,3 +23,8 @@ Backend's Repository:
 Frontend's Repository:
 
 - [Next.js Frontend](https://github.com/IskanMr/epus-8/tree/main/frontend)
+
+Deployemnts
+------
+[Frontend](https://epus-8.vercel.app)
+[Backend](http://20.51.177.188:1945/docs)
