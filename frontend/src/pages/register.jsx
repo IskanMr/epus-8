@@ -48,9 +48,9 @@ export default function Register() {
       // navigate("/login")
       router.push("/login");
     } catch (err) {
-        console.error(err.response.data.message);
-        toast.error(err.response.data.message);
-        setLoading(false);
+      console.error(err.response.data.message);
+      toast.error(err.response.data.message);
+      setLoading(false);
     }
   };
 

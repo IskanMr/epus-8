@@ -47,7 +47,7 @@ export default function Place() {
         setLoading(false);
       }
     })()
-  }, [data, loading]);
+  }, [ loading]);
 
   // useEffect(() => {
   //   getPlace();
