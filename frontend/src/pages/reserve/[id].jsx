@@ -13,9 +13,7 @@ import axios from 'axios';
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
-
   // Fetch the data or perform other actions based on the ID
-
   return {
     props: {
       id: Number(id),
@@ -28,27 +26,47 @@ export default function PlaceDetail({id}) {
   const [time, setTime] = useState([]);
   const [currentURL, setCurrentURL] = useState('');
   const [apiEndpoint, setApiEndpoint] = useState('');
+  const [submitApiEndpoint, setSubmitApiEndpoint] = useState('');
   const [loading, setLoading] = useState(true);
+  const [id_user, setId_user] = useState('');
+  const [id_waktu, setId_waktu] = useState('');
 
-	
+  const onSubmit = () => {
+    (async () => {
+      try {
+        const response = await axios.post(submitApiEndpoint, {
+          id_user : id_user,
+          id_waktu : i 
+        });
+      } catch(error) {
+        console.error(error);
+        setLoading(false);
+      }
+    })();
+  };
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCurrentURL(window.location.href);
-      setApiEndpoint('http://' + window.location.hostname + ':8000/waktu_tersedia/' + id);
+      setApiEndpoint('http://20.51.177.188:1945/' + 'waktu_tersedia/' + id);
+      setSubmitApiEndpoint('http://20.51.177.188:1945/' + 'booking_waktu');
     }
+  
+    const id_user = localStorage.getItem("id_user");
+    setId_user(id_user);
 
     (async () => {
       try {
         const response = await axios.get(apiEndpoint);
         
-        // const jsonData = await response.data;
-        // if (Array.isArray(jsonData)) {
-        //   setData(jsonData);
-        // } else if (typeof jsonData === 'object') {
-        //   setData(Object.values(jsonData));
-        // }
-
-				// Extract the hour part from the 'waktu' property
+        // Get the selected option element
+        const selectElement = document.getElementById("reservationHour");
+        // Get the data-id_waktu value of the selected option
+        const selectedId_waktu = selectElement.options[selectElement.selectedIndex].dataset.id_waktu;
+        // Set the id_waktu state with the selected value
+        setId_waktu(selectedId_waktu);
+	
+        // Extract the hour part from the 'waktu' property
 				const extractHour = (datetime) => {
 					const hour = datetime.split('T')[1];
 					return hour;
@@ -64,8 +82,13 @@ export default function PlaceDetail({id}) {
 							// Filter out the items that do not match the fixed date or have isAvailable as false
 							return date.toDateString() === fixedDate.toDateString() && item.is_available;
 						})
-						.map(item => extractHour(item.waktu));
-
+						.map(item => {
+              return {
+                hour: extractHour(item.waktu),
+                id_waktu: item.id
+              };
+            });
+            console.log(time);
 					setTime(extractedTime);
 				};
 
@@ -101,50 +124,27 @@ export default function PlaceDetail({id}) {
             <div className="pt-3">
               Ruangan untuk kapasitas 16 orang di lantai
             </div>
-            {/* <div className="pt-5 grow-0">
-              <select name="reservationDate" id="reservationDate" className="w-40 dropdown rounded px-1">
-                <option value="24/5/2023">24/5/2023</option>
-                <option value="25/5/2023">25/5/2023</option>
-                <option value="26/5/2023">26/5/2023</option>
-                <option value="27/5/2023">27/5/2023</option>
-              </select>
-            </div> */}
-            
             <DatePicker onChange={onChange} value={value} className="flex py-1 pb-2"/>
-            {/* <div className="pt-5 grow-0"> */}
-              {/* <select name="reservationHour" id="reservationHour" className="w-40 dropdown rounded px-1">
-                <option value="07:00-08:00">07:00-08:00</option>
-                <option value="10:00-11:00">10:00-11:00</option>
-                <option value="13:00-14:00">13:00-14:00</option>
-                <option value="15:00-16:00">15:00-16:00</option>
-              </select> */}
-            {/* </div> */}
             {loading ? (
               <p>Loading data...</p>
             ) : time.length > 0 ? (
 							<select name="reservationHour" id="reservationHour" className="w-40 dropdown rounded px-1">
 								{time.map((item, index) => (
-									<option key={index} value={item}>{item}</option>
+									<option key={index} value={item.hour} data-id_waktu={item.id_waktu}>{item.hour}</option>
 								))}
 							</select>
             ) : (
               <p>No data available</p>
             )}
-						{/* <select>
-							<p>woi</p>
-						</select> */}
-						{/* <option>asas</option> */}
             <div className="flex flex-row flex-grow items-end justify-end gap-5">
               <Link href="/">
                 <p className="font-semibold p-3 orangetheme">
                   Batalkan
                 </p>
               </Link>
-              <Link href='/' className="">
-                <Button style={{}}>
+                <Button style={{}} onClick={onSubmit}>
                   Pesan ruangan
                 </Button>
-              </Link>
             </div>
           </div>
         </div>
