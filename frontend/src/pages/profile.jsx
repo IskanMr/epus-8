@@ -13,9 +13,19 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
   const [id_user, setId_user] = useState(''); 
   const [username, setUsername] = useState('');
-  const [timeApiEndpoint, setTimeApiEndpoint] = useState('');
+  // const [time, setTime] = useState([]);
 
   const router = useRouter();
+
+  const extractTime = (waktu) => {
+    const time = waktu.split("T")[1];
+    return time;
+  };
+  
+  const extractDate = (waktu) => {
+    const date = waktu.split("T")[0];
+    return date;
+  };
 
   useEffect(() => {
     // get the id_user and username from localStorage
@@ -31,9 +41,6 @@ export default function Profile() {
       setApiEndpoint((prevApiEndpoint) => {
         return "http://" + window.location.hostname + ":8000/booking_waktu/user/" + id_user + "/";
       });
-      setApiEndpoint((prevApiEndpoint) => {
-        return "http://" + window.location.hostname + ":8000/booking_waktu/user/" + id_user + "/";
-      });
     }
     
     (async () => {
@@ -45,7 +52,22 @@ export default function Profile() {
         } else if (typeof response.data === 'object') {
           setData(Object.values(response.data));
         }
-        
+
+        // Handle data processing and state update
+				const processData = () => {
+					// const fixedDate = new Date(value); // Replace with your desired fixed date
+
+					// const extractedTime = response.data
+					// 	// .filter(item => {
+					// 	// 	const date = new Date(item.waktu_tersedia.waktu);
+					// 	// 	// Filter out the items that do not match the fixed date or have isAvailable as false
+					// 	// 	return date.toDateString() === fixedDate.toDateString() && item.is_available;
+					// 	// })
+					// 	.map(item => extractHour(item.waktu_tersedia.waktu));
+          // console.log(extractedTime);
+					// setTime(extractedTime);
+				};
+        // console.log(time);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -88,7 +110,10 @@ export default function Profile() {
               data.map((item, index) => (
                 <ReservedPlace
                   key={index}
-                  title={item.nama_tempat}
+                  title={item.waktu_tersedia.place.nama_tempat}
+                  date={extractDate(item.waktu_tersedia.waktu)}
+                  hour={extractTime(item.waktu_tersedia.waktu)}
+                  id_booking={item.id}
                 />
               ))
             ) : (
