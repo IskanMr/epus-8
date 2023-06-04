@@ -21,7 +21,7 @@ export default function Login() {
       typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
     if (token) {
-      window.location.replace("/");
+      // window.location.replace("/"); //TODO: sementara di-comment dulu.
     }
   });
 

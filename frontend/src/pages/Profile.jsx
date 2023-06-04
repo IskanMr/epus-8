@@ -2,8 +2,39 @@ import Button from "../components/utils/Button";
 import DefaultLayout from "../layouts/DefaultLayout";
 import Image from "next/image";
 import ReservedPlace from "../components/templates/ReservedPlace";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function Profile() {
+  const [currentURL, setCurrentURL] = useState('');
+  const [apiEndpoint, setApiEndpoint] = useState('');
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentURL(window.location.href);
+      setApiEndpoint('http://' + window.location.hostname + ':8000/tempat/');
+    }
+
+    (async () => {
+      try {
+        const response = await axios.get(apiEndpoint);
+
+        if (Array.isArray(response.data)) {
+          setData(response.data);
+        } else if (typeof response.data === 'object') {
+          setData(Object.values(response.data));
+        }
+        
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    })()
+  }, [data, loading]);
+
   return (
   <DefaultLayout seoTitle="Profile">
     <div className="bg w-full flex flex-row items-start h-full py-10 px-20 justify-evently gap-10">
@@ -25,22 +56,21 @@ export default function Profile() {
             height={25}
           />
         </div> */}
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
-        <ReservedPlace />
+        <ReservedPlace title="Ruang C-7"/>
+        {loading ? (
+            <p>Loading data...</p>
+          ) : data.length > 0 ? (
+            data.map((item, index) => (
+              <ReservedPlace
+                key={index}
+                title={item.nama_tempat}
+              />
+            ))
+          ) : (
+            <p>No data available</p>
+          )}
+          <p>Current URL: {currentURL}</p>
+          <p>API endpoint: {apiEndpoint}</p>
       </div>
       <div className="placecard flex flex-col grow-0 rounded-xl items-stretch w-80">
         <div className="p-5 flex flex-col items-center">
