@@ -67,8 +67,8 @@ export default function Login() {
 
   return (
     <div className={Styles.container}>
-      <p>Current URL: {currentURL}</p>
-      <p>API endpoint: {apiEndpoint}</p>
+      {/* <p>Current URL: {currentURL}</p>
+      <p>API endpoint: {apiEndpoint}</p> */}
       <div className={Styles.card}>
         <h1 className={Styles.title}>EPUS</h1>
         <h2 className="flex w-full font-semibold text-xl py-2">Masuk</h2>  

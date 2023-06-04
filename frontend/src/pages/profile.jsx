@@ -116,10 +116,10 @@ export default function Profile() {
             ) : (
               <p>No data available</p>
             )}
-          <p>Current URL: {currentURL}</p>
+          {/* <p>Current URL: {currentURL}</p>
           <p>API endpoint: {apiEndpoint}</p>
           <p>id_user: {id_user}</p>
-          <p>username: {username}</p>
+          <p>username: {username}</p> */}
         </div>
         <div className="placecard flex flex-col grow-0 rounded-xl items-stretch w-80">
           <div className="p-5 flex flex-col items-center">
