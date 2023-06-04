@@ -58,10 +58,10 @@ async def login_pengguna(pengguna: PenggunaSchema):
     try:
         db_pengguna = db.session.query(PenggunaModel).filter(PenggunaModel.username == pengguna.username).first()
         if db_pengguna is None:
-            return {"message": "not found"}
+            raise HTTPException(status_code=400, detail="Username not found")
         if db_pengguna.password == pengguna.password:
             return db_pengguna
-        return {"message": "wrong password"}
+        raise HTTPException(status_code=400, detail="Wrong password")
     except Exception as e:
         print(e)
         if e is HTTPException:
