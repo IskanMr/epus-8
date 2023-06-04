@@ -144,4 +144,4 @@ async def get_booking_waktu(id_user: int):
 
 # To run locally
 if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=8027)
+    uvicorn.run(app, host='0.0.0.0', port=1945)
