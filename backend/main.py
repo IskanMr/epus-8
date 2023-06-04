@@ -19,7 +19,8 @@ app.add_middleware(DBSessionMiddleware, db_url=os.environ['DATABASE_URL'])
 
 # Configure CORS
 origins = [
-    "http://localhost:3000",  # Replace with the allowed origin(s) for your application
+    "http://localhost:3000",  # Replace with the allowed origin(s) for your application,
+    "*"
 ]
 
 app.add_middleware(
@@ -36,7 +37,7 @@ async def root():
 @app.post("/pengguna/")#,, response_model=PenggunaSchema)
 async def create_pengguna(pengguna: PenggunaSchema):
     try:
-        db_pengguna = PenggunaModel(username=pengguna.username, password=pengguna.password)
+        db_pengguna = PenggunaModel(username=pengguna.username, password=pengguna.password, is_admin=False)
         #check if username already exist
         if db.session.query(PenggunaModel).filter(PenggunaModel.username == pengguna.username).first() is not None:
             raise HTTPException(status_code=400, detail="Username already exist")
