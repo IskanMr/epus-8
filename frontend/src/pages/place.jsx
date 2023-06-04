@@ -107,8 +107,8 @@ export default function Place() {
             <p>No data available</p>
           )}
           {/* <p>{data}</p> */}
-          <p>Current URL: {currentURL}</p>
-          <p>API endpoint: {apiEndpoint}</p>
+          {/* <p>Current URL: {currentURL}</p>
+          <p>API endpoint: {apiEndpoint}</p> */}
         </div>
       </div>
     </DefaultLayout>

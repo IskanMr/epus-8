@@ -79,8 +79,8 @@ export default function Register() {
     <div className={Styles.container}>
       <ToastContainer />
       <div className={Styles.card}>
-        <p>Current URL: {currentURL}</p>
-        <p>API endpoint: {apiEndpoint}</p>
+        {/* <p>Current URL: {currentURL}</p>
+        <p>API endpoint: {apiEndpoint}</p> */}
         <h1 className={Styles.title}>EPUS</h1>
         <h2 className="flex w-full font-semibold text-xl py-2">Daftar</h2>
         <form className={Styles.form} method="post">
