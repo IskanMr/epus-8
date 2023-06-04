@@ -6,6 +6,7 @@ function BaseLayout({ seoTitle, children }) {
     <>
       <Head>
         <title>{seoTitle} • EPus Booking</title>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
       <main className={styles.content}>{children}</main>
     </>
