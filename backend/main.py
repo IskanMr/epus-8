@@ -4,7 +4,7 @@ from fastapi_sqlalchemy import DBSessionMiddleware, db
 from fastapi.middleware.cors import CORSMiddleware
 
 from models.models import Pengguna as PenggunaModel, Tempat as TempatModel, Waktu_Tersedia as Waktu_TersediaModel, Booking_Waktu as Booking_WaktuModel
-from schema.schema import Pengguna as PenggunaSchema, Tempat as TempatSchema, Waktu_Tersedia as Waktu_TersediaSchema, Booking_Waktu as Booking_WaktuSchema
+from schema.schema import Pengguna as PenggunaSchema, Tempat as TempatSchema, Waktu_Tersedia as Waktu_TersediaSchema, Booking_Waktu as Booking_WaktuSchema, PenggunaWithID as PenggunaWithIDSchema
 
 import os
 from dotenv import load_dotenv
@@ -41,6 +41,23 @@ async def create_pengguna(pengguna: PenggunaSchema):
     #get user_id values
     print(db_pengguna.id_user)
     return db_pengguna
+
+@app.post("/pengguna/login/", response_model=PenggunaWithIDSchema)
+async def login_pengguna(pengguna: PenggunaSchema):
+    db_pengguna = db.session.query(PenggunaModel).filter(PenggunaModel.username == pengguna.username).first()
+    if db_pengguna is None:
+        return {"message": "not found"}
+    if db_pengguna.password == pengguna.password:
+        return db_pengguna
+    return {"message": "wrong password"}
+
+@app.post("/pengguna/logout/")
+async def logout_pengguna(pengguna: PenggunaSchema):
+    db_pengguna = db.session.query(PenggunaModel).filter(PenggunaModel.username == pengguna.username).first()
+    if db_pengguna is None:
+        return {"message": "not found"}
+    return {"message": "logout success"}
+
 
 @app.delete("/pengguna/{id_user}")
 async def delete_pengguna(id_user: int):

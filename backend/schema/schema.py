@@ -9,6 +9,14 @@ class Pengguna(BaseModel):
     class Config:
         orm_mode = True
 
+class PenggunaWithID(BaseModel):
+    id_user:int
+    username:str
+    password:str
+
+    class Config:
+        orm_mode = True
+
 class Tempat(BaseModel):
     nama_tempat:str
 
