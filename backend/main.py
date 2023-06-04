@@ -54,7 +54,7 @@ async def create_pengguna(pengguna: PenggunaSchema):
             raise HTTPException(status_code=400, detail=str(e))
 
 
-@app.post("/pengguna/login/", response_model=PenggunaWithIDSchema)
+@app.post("/pengguna/login/")#, response_model=PenggunaWithIDSchema)
 async def login_pengguna(pengguna: PenggunaSchema):
     try:
         db_pengguna = db.session.query(PenggunaModel).filter(PenggunaModel.username == pengguna.username).first()
@@ -147,7 +147,9 @@ async def create_waktu_tersedia(waktu_tersedia: Waktu_TersediaSchema):
 
 @app.get("/waktu_tersedia/{id_place}")
 async def get_waktu_tersedia(id_place: int):
-    return db.session.query(Waktu_TersediaModel).filter(Waktu_TersediaModel.id_place == id_place).all()
+
+    results= db.session.query(Waktu_TersediaModel).filter(Waktu_TersediaModel.id_place == id_place).all()
+    return results
 
 @app.delete("/waktu_tersedia/{id_waktu}")
 async def delete_waktu_tersedia(id_waktu: int):
@@ -206,7 +208,11 @@ async def delete_booking_waktu(id_booking_waktu: int):
 
 @app.get("/booking_waktu/user/{id_user}")
 async def get_booking_waktu(id_user: int):
-    return db.session.query(Booking_WaktuModel).filter(Booking_WaktuModel.id_user == id_user).all()
+    results= db.session.query(Booking_WaktuModel).filter(Booking_WaktuModel.id_user == id_user).join(Waktu_TersediaModel, Booking_WaktuModel.id_waktu == Waktu_TersediaModel.id).join(TempatModel, Waktu_TersediaModel.id_place == TempatModel.id_place).all()
+    for result in results:
+        print(result.waktu_tersedia.id_place)
+        print(result.waktu_tersedia.place.nama_tempat)
+    return results
 
 
 
