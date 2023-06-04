@@ -5,6 +5,8 @@ import ReservedPlace from "../components/templates/ReservedPlace";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+// import { useHistory } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const [currentURL, setCurrentURL] = useState('');
@@ -16,6 +18,8 @@ export default function Profile() {
   // const [time, setTime] = useState([]);
 
   const router = useRouter();
+  // const history = useHistory();
+  // const navigate = useNavigate();
 
   const extractTime = (waktu) => {
     const time = waktu.split("T")[1];
@@ -25,6 +29,12 @@ export default function Profile() {
   const extractDate = (waktu) => {
     const date = waktu.split("T")[0];
     return date;
+  };
+
+  const handleClick = () => {
+    // router.push("/profile");
+    // history.push("/profile");
+    // navigate('/profile', { replace: true });
   };
 
   useEffect(() => {
@@ -39,7 +49,8 @@ export default function Profile() {
     if (typeof window !== 'undefined') {
       setCurrentURL(window.location.href);
       setApiEndpoint((prevApiEndpoint) => {
-        return "http://" + window.location.hostname + ":8000/booking_waktu/user/" + id_user + "/";
+        // return "http://" + window.location.hostname + ":8000/booking_waktu/user/" + id_user + "/";
+        return "http://20.51.177.188:1945/" + "booking_waktu/user/" + id_user + "/";
       });
     }
     
@@ -53,21 +64,6 @@ export default function Profile() {
           setData(Object.values(response.data));
         }
 
-        // Handle data processing and state update
-				const processData = () => {
-					// const fixedDate = new Date(value); // Replace with your desired fixed date
-
-					// const extractedTime = response.data
-					// 	// .filter(item => {
-					// 	// 	const date = new Date(item.waktu_tersedia.waktu);
-					// 	// 	// Filter out the items that do not match the fixed date or have isAvailable as false
-					// 	// 	return date.toDateString() === fixedDate.toDateString() && item.is_available;
-					// 	// })
-					// 	.map(item => extractHour(item.waktu_tersedia.waktu));
-          // console.log(extractedTime);
-					// setTime(extractedTime);
-				};
-        // console.log(time);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -103,7 +99,7 @@ export default function Profile() {
               height={25}
             />
           </div> */}
-          <ReservedPlace title="Ruang C-7"/>
+          {/* <ReservedPlace title="Ruang C-7"/> */}
           {loading ? (
               <p>Loading data...</p>
             ) : data.length > 0 ? (
@@ -114,6 +110,7 @@ export default function Profile() {
                   date={extractDate(item.waktu_tersedia.waktu)}
                   hour={extractTime(item.waktu_tersedia.waktu)}
                   id_booking={item.id}
+                  onClick={() => handleClick()}
                 />
               ))
             ) : (

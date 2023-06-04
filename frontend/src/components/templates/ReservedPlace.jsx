@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from 'next/link';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function ReservedPlace({title ,date, hour, id_booking}) {
   // const [id, setId] = useState("");
@@ -10,11 +11,13 @@ export default function ReservedPlace({title ,date, hour, id_booking}) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const router = useRouter();
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCurrentURL(window.location.href);
       setApiEndpoint((prevApiEndpoint) => {
-        return "http://" + window.location.hostname + ":8000/booking_waktu/" + id_booking + "/";
+        return "http://20.51.177.188:1945/" + "booking_waktu/" + id_booking + "/";
       });
     }
   })
@@ -23,6 +26,7 @@ export default function ReservedPlace({title ,date, hour, id_booking}) {
     event.preventDefault();
     try {
       const response = await axios.delete(apiEndpoint);
+      router.push("/profile");
     } catch (err) {
       console.error(err.response);
       // toast.error(err.response);
