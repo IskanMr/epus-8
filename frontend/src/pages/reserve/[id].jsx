@@ -35,10 +35,19 @@ export default function PlaceDetail({id}) {
   const onSubmit = () => {
     (async () => {
       try {
+        console.log(id_user, id_waktu);
         const response = await axios.post(submitApiEndpoint, {
           id_user : id_user,
-          id_waktu : i 
-        });
+          //parse id_waktu into integer
+          id_waktu : parseInt(id_waktu),
+        }
+        
+        );
+        if (response.status === 200) {
+          alert("Berhasil booking waktu!");
+        } else {
+          alert("Gagal booking waktu!");
+        }
       } catch(error) {
         console.error(error);
         setLoading(false);
@@ -138,7 +147,16 @@ export default function PlaceDetail({id}) {
             </div>
             <DatePicker onChange={onChange} value={value} className="flex py-1 pb-2"/>
             {
-							<select name="reservationHour" id="reservationHour" className="w-40 dropdown rounded px-1">
+							<select name="reservationHour" id="reservationHour" className="w-40 dropdown rounded px-1"
+              onChange={(e) => {
+                // Get the selected option element
+                const selectElement = document.getElementById("reservationHour");
+                // Get the data-id_waktu value of the selected option
+                let selectedId_waktu = selectElement.options[selectElement.selectedIndex].dataset.id_waktu;
+                // Set the id_waktu state with the selected value
+                setId_waktu(selectedId_waktu);
+              }}
+              >
 								{time.map((item, index) => (
 									<option key={index} value={item.hour} data-id_waktu={item.id_waktu}>{item.hour}</option>
 								))}
