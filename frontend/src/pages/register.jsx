@@ -66,7 +66,7 @@ export default function Register() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCurrentURL(window.location.href);
-      setApiEndpoint('http://20.51.177.188:1945/' + 'pengguna/');
+      setApiEndpoint(`${import.meta.env.BASE_API_URL}` + 'pengguna/');
     }
     const token =
       typeof window !== "undefined" ? localStorage.getItem("token") : null;
