@@ -21,7 +21,7 @@ export default function Login() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCurrentURL(window.location.href);
-      setApiEndpoint(`${import.meta.env.BASE_API_URL}` + 'pengguna/login/');
+      setApiEndpoint(`http://20.51.177.188:1945/` + 'pengguna/login/');
     }
     const token =
       typeof window !== "undefined" ? localStorage.getItem("token") : null;
@@ -50,7 +50,7 @@ export default function Login() {
       // navigate("/login")
       router.push("/place");
     } catch (err) {
-      console.error(err.response);
+      alert("Kata sandi atau username salah!");
       toast.error(err.response);
       setLoading(false);
     }

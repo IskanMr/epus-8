@@ -17,7 +17,7 @@ export default function Place() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCurrentURL(window.location.href);
-      setApiEndpoint('http://20.51.177.188:1945/' + 'tempat/');
+      setApiEndpoint(`http://20.51.177.188:1945/` + 'tempat/');
     }
     // setApiEndpoint('https://catfact.ninja/fact')
     // getPlace();

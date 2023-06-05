@@ -48,8 +48,8 @@ export default function PlaceDetail({id}) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCurrentURL(window.location.href);
-      setApiEndpoint(`${import.meta.env.BASE_API_URL}` + 'waktu_tersedia/' + id);
-      setSubmitApiEndpoint(`${import.meta.env.BASE_API_URL}` + 'booking_waktu');
+      setApiEndpoint(`http://20.51.177.188:1945/` + 'waktu_tersedia/' + id);
+      setSubmitApiEndpoint(`http://20.51.177.188:1945/` + 'booking_waktu');
     }
   
     const id_user = localStorage.getItem("id_user");

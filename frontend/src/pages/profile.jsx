@@ -50,7 +50,7 @@ export default function Profile() {
       setCurrentURL(window.location.href);
       setApiEndpoint((prevApiEndpoint) => {
         // return "http://" + window.location.hostname + ":8000/booking_waktu/user/" + id_user + "/";
-        return `${import.meta.env.BASE_API_URL}` + "booking_waktu/user/" + id_user + "/";
+        return `http://20.51.177.188:1945/` + "booking_waktu/user/" + id_user + "/";
       });
     }
     

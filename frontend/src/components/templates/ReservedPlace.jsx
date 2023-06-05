@@ -17,7 +17,7 @@ export default function ReservedPlace({title ,date, hour, id_booking}) {
     if (typeof window !== 'undefined') {
       setCurrentURL(window.location.href);
       setApiEndpoint((prevApiEndpoint) => {
-        return `${import.meta.env.BASE_API_URL}` + "booking_waktu/" + id_booking + "/";
+        return `http://20.51.177.188:1945/` + "booking_waktu/" + id_booking + "/";
       });
     }
   })
