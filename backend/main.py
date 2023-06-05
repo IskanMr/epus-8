@@ -53,7 +53,25 @@ async def create_pengguna(pengguna: PenggunaSchema):
         else:
             raise HTTPException(status_code=400, detail=str(e))
 
-
+@app.post("/pengguna/admin")#,, response_model=PenggunaSchema)
+async def create_pengguna(pengguna: PenggunaSchema):
+    try:
+        db_pengguna = PenggunaModel(username=pengguna.username, password=pengguna.password, is_admin=True)
+        #check if username already exist
+        if db.session.query(PenggunaModel).filter(PenggunaModel.username == pengguna.username).first() is not None:
+            raise HTTPException(status_code=400, detail="Username already exist")
+        db.session.add(db_pengguna)
+        db.session.commit()
+        #get user_id values
+        print(db_pengguna.id_user)
+        return db_pengguna
+    except Exception as e:
+        print(e)
+        if e is HTTPException:
+            raise HTTPException(status_code=400, detail=e.detail)
+        else:
+            raise HTTPException(status_code=400, detail=str(e))
+        
 @app.post("/pengguna/login/")#, response_model=PenggunaWithIDSchema)
 async def login_pengguna(pengguna: PenggunaSchema):
     try:
