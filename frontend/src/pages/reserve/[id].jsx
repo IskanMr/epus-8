@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from 'next/link';
 import Button from "../../components/utils/Button";
 import DateTimePicker from 'react-datetime-picker';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
@@ -31,12 +31,14 @@ export default function PlaceDetail({id}) {
   const [id_user, setId_user] = useState('');
   const [id_waktu, setId_waktu] = useState('');
 
+  const selectRef = useRef(null);
+
   const onSubmit = () => {
     (async () => {
       try {
         const response = await axios.post(submitApiEndpoint, {
           id_user : id_user,
-          id_waktu : i 
+          id_waktu : id_waktu 
         });
       } catch(error) {
         console.error(error);
@@ -58,14 +60,7 @@ export default function PlaceDetail({id}) {
     (async () => {
       try {
         const response = await axios.get(apiEndpoint);
-        
-        // Get the selected option element
-        const selectElement = document.getElementById("reservationHour");
-        // Get the data-id_waktu value of the selected option
-        const selectedId_waktu = selectElement.options[selectElement.selectedIndex].dataset.id_waktu;
-        // Set the id_waktu state with the selected value
-        setId_waktu(selectedId_waktu);
-	
+
         // Extract the hour part from the 'waktu' property
 				const extractHour = (datetime) => {
 					const hour = datetime.split('T')[1];
@@ -74,12 +69,15 @@ export default function PlaceDetail({id}) {
 
 				// Handle data processing and state update
 				const processData = () => {
-					const fixedDate = new Date(value); // Replace with your desired fixed date
+					const fixedDate = new Date(value); 
+          console.log(response.data);
+          console.log(typeof response.data);
+          console.log(response.data.length);
 
-					const extractedTime = response.data
+					// const extractedTime = response.data
+          const extractedTime = Object.values(response.data)
 						.filter(item => {
 							const date = new Date(item.waktu);
-							// Filter out the items that do not match the fixed date or have isAvailable as false
 							return date.toDateString() === fixedDate.toDateString() && item.is_available;
 						})
 						.map(item => {
@@ -88,14 +86,13 @@ export default function PlaceDetail({id}) {
                 id_waktu: item.id
               };
             });
-            console.log(time);
+            // console.log(time);
 					setTime(extractedTime);
 				};
 
-				// Call processData() to populate the 'time' state variable
   			processData();
 				console.log(time);
-        
+
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -104,6 +101,28 @@ export default function PlaceDetail({id}) {
     })()
   }, [loading, value]);
 
+  const selectElement = selectRef.current;
+
+  const handleChange = () => {
+    const selectedId_waktu = selectElement && selectElement.options[selectElement.selectedIndex].dataset.id_waktu;
+    setId_waktu(selectedId_waktu);
+
+    console.log(id_waktu);
+  };
+  // Use a useEffect hook to add a change event listener on the select element
+  useEffect(() => {
+    
+
+    if (selectElement) {
+      selectElement.addEventListener("change", handleChange);
+    }
+
+    return () => {
+      if (selectElement) {
+        selectElement.removeEventListener("change", handleChange);
+      }
+    }; 
+  }, [ selectElement, handleChange]); // Add an empty dependency array to run only once
 
   return (
     <DefaultLayout>
@@ -128,7 +147,7 @@ export default function PlaceDetail({id}) {
             {loading ? (
               <p>Loading data...</p>
             ) : time.length > 0 ? (
-							<select name="reservationHour" id="reservationHour" className="w-40 dropdown rounded px-1">
+							<select name="reservationHour" id="reservationHour" className="w-40 dropdown rounded px-1" ref={selectRef}>
 								{time.map((item, index) => (
 									<option key={index} value={item.hour} data-id_waktu={item.id_waktu}>{item.hour}</option>
 								))}
