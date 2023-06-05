@@ -44,12 +44,12 @@ export default function Register() {
         setData(Object.values(response.data));
       }
       // toast(response.data.message);
+      alert("Akun berhasil dibuat!");
       setLoading(false);
       // navigate("/login")
       router.push("/login");
     } catch (err) {
-      console.error(err.response.data.message);
-      toast.error(err.response.data.message);
+      alert("Username sudah terdaftar!. Gunakan username lain.");
       setLoading(false);
     }
   };
@@ -77,7 +77,7 @@ export default function Register() {
 
   return (
     <div className={Styles.container}>
-      <ToastContainer />
+      
       <div className={Styles.card}>
         {/* <p>Current URL: {currentURL}</p>
         <p>API endpoint: {apiEndpoint}</p> */}

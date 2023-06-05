@@ -66,7 +66,7 @@ export default function Profile() {
 
         setLoading(false);
       } catch (error) {
-        console.error(error);
+        alert("Data tidak ditemukan. Keterangan error: " + error)
         setLoading(false);
       }
     })()

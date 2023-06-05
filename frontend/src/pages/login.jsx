@@ -46,6 +46,7 @@ export default function Login() {
       localStorage.setItem("id_user", response.data.id_user);
       localStorage.setItem("username", response.data.username);
       console.log(response.data);
+      alert("Login berhasil!");
       setLoading(false);
       // navigate("/login")
       router.push("/place");
