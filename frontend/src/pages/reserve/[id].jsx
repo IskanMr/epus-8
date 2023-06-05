@@ -30,6 +30,7 @@ export default function PlaceDetail({id}) {
   const [loading, setLoading] = useState(true);
   const [id_user, setId_user] = useState('');
   const [id_waktu, setId_waktu] = useState('');
+  const [selectElement, setselectElement] = useState(null);
 
   const onSubmit = () => {
     (async () => {
@@ -58,13 +59,19 @@ export default function PlaceDetail({id}) {
     (async () => {
       try {
         const response = await axios.get(apiEndpoint);
-        
+        console.log(response.data);
         // Get the selected option element
-        const selectElement = document.getElementById("reservationHour");
+        setselectElement(document.getElementById("reservationHour"));
         // Get the data-id_waktu value of the selected option
-        const selectedId_waktu = selectElement.options[selectElement.selectedIndex].dataset.id_waktu;
+        console.log(selectElement)
+        if(selectElement.selectedIndex && selectElement.options[selectElement.selectedIndex]) {
+        let selectedId_waktu = selectElement.options[selectElement.selectedIndex].dataset.id_waktu;
+        console.log(selectedId_waktu)
         // Set the id_waktu state with the selected value
         setId_waktu(selectedId_waktu);
+        
+        };
+        
 	
         // Extract the hour part from the 'waktu' property
 				const extractHour = (datetime) => {
@@ -78,7 +85,9 @@ export default function PlaceDetail({id}) {
 
 					const extractedTime = response.data
 						.filter(item => {
+              
 							const date = new Date(item.waktu);
+              console.log(fixedDate.toDateString(), date.toDateString(), item.is_available);
 							// Filter out the items that do not match the fixed date or have isAvailable as false
 							return date.toDateString() === fixedDate.toDateString() && item.is_available;
 						})
@@ -101,7 +110,10 @@ export default function PlaceDetail({id}) {
         console.error(error);
         setLoading(false);
       }
-    })()
+    }
+    
+    
+    )()
   }, [loading, value]);
 
 
@@ -125,17 +137,13 @@ export default function PlaceDetail({id}) {
               Ruangan untuk kapasitas 16 orang di lantai
             </div>
             <DatePicker onChange={onChange} value={value} className="flex py-1 pb-2"/>
-            {loading ? (
-              <p>Loading data...</p>
-            ) : time.length > 0 ? (
+            {
 							<select name="reservationHour" id="reservationHour" className="w-40 dropdown rounded px-1">
 								{time.map((item, index) => (
 									<option key={index} value={item.hour} data-id_waktu={item.id_waktu}>{item.hour}</option>
 								))}
 							</select>
-            ) : (
-              <p>No data available</p>
-            )}
+             }
             <div className="flex flex-row flex-grow items-end justify-end gap-5">
               <Link href="/">
                 <p className="font-semibold p-3 orangetheme">
