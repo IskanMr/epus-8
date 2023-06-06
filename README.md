@@ -1,7 +1,7 @@
 # EPUS 8
 EPUS 8 adalah bagian dari sistem EPUS yang memiliki fitur utama memesan tempat belajar.
 
-Kelompok Tulations:
+Kelompok Kecil 8:
 | Jabatan | Nama | NIM |
 | --- | --- | --- |
 | Ketua | [Iskan Mustamir](https://github.com/IskanMr) | 20/456367/TK/50497 |
